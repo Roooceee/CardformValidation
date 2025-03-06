@@ -109,16 +109,13 @@ function verifyAllChampNoEmpty(){
    }
 }
 
+Object.values(fields).forEach((field)=>{
+   field.element.addEventListener("input" , (e) => {
+      verifyAllChampNoEmpty()
+   })
+})
 
-
-
-// Object.values(fields).forEach((field)=>{
-//    field.element.addEventListener("input" , (e) => {
-//       verifyAllChampNoEmpty()
-//    })
-// })
-
-submit.disabled = false;
+// submit.disabled = false;
 
 submit.addEventListener("click",(e)=>{
 
