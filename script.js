@@ -33,8 +33,10 @@ let isFormValid = true;
 
 const messagesError = {
    cardholderNameFormat:{name: 'cardholderNameFormat' , text:'Only letters, hyphens, apostrophes, and spaces are allowed'},
+   cardholderNameNumberName:{name:'cardholderNameNumberChaine', text:'Must be contain name and lastname minimum'},
+   cardholderNameSize:{name:'cardholderNameSize',text:'Must contain less than 30 characters'},
    numberOnly:{name: 'numberOnly' , text:'Wrong format, numbers only'},
-   cardSize:{name: 'cardSize' , text:'Wrong size, 12 expected numbers'},
+   cardSize:{name: 'cardSize' , text:'Wrong size, 16 expected numbers'},
    monthSize:{name: 'monthSize' , text:'Wrong size, 2 expected numbers for month'},
    monthValue:{name: 'monthValue' , text:'Wrong value, must be between 01 and 12'},
    yearValue:{name: 'yearValue' , text:`Wrong value, must be between ${currentYearFormatYY} and 99`},
@@ -79,6 +81,13 @@ function verifySizeField(field,size){
    return false
 }
 
+function verifySizeMaxField(field,max){
+   if(field.value.length<=max){
+      return true
+   }
+   return false
+}
+
 function verifyIntervalField(field,min,max){
    if(parseInt(field.value)>=min && parseInt(field.value)<=max){
       return true
@@ -117,6 +126,7 @@ Object.values(fields).forEach((field)=>{
 
 // submit.disabled = false;
 
+
 submit.addEventListener("click",(e)=>{
 
    e.preventDefault();
@@ -141,35 +151,55 @@ submit.addEventListener("click",(e)=>{
       fields.cardholderNameField.isGood = false
       RemoveAndShowMessageWithClassCSS(cardholderNameField,"afterend",messagesError.cardholderNameFormat,"error")
    }
+   else if(verifyFormatField(cardholderNameField,/^[A-Za-z]+(?:-[A-Za-z]+)?\s+[A-Za-z]+(?:-[A-Za-z]+)?(?:\s+[A-Za-z]+(?:-[A-Za-z]+)*)*$/)==false){
+      RemoveAndShowMessageWithClassCSS(cardholderNameField,"afterend",messagesError.cardholderNameNumberName,"error")
+   }
+   if(verifySizeMaxField(cardholderNameField,30 )==false){
+      fields.cardholderNameField.isGood = false
+      RemoveAndShowMessageWithClassCSS(cardholderNameField,"afterend",messagesError.cardholderNameSize,"error")
+   }
+
 
    // Vérification du champ cardNumberField
-   if(verifyFormatField(cardNumberField, /^[0-9]+$/)===false){
+   if(verifyFormatField(cardNumberField, /^[0-9]+$/g)===false){
       fields.cardNumberField.isGood = false
       RemoveAndShowMessageWithClassCSS(cardNumberField,"afterend",messagesError.numberOnly,"error")
    }
-   if(verifySizeField(cardNumberField,12)===false){
-      fields.cardNumberField.isGood = false
-      RemoveAndShowMessageWithClassCSS(cardNumberField,"afterend",messagesError.cardSize,"error")
+   if(verifySizeField(cardNumberField,16)===false){
+         fields.cardNumberField.isGood = false
+         RemoveAndShowMessageWithClassCSS(cardNumberField,"afterend",messagesError.cardSize,"error")
    }
 
-   // Vérification du champ monthField
-   if(verifySizeField(monthField,2)===false){
+   // // Vérification du champ monthField
+   if(verifyFormatField(monthField,/^[0-9]+$/g)===false){
       fields.monthField.isGood = false
-      RemoveAndShowMessageWithClassCSS(divDate,"beforeend",messagesError.monthSize,"error")
+      RemoveAndShowMessageWithClassCSS(divDate,"beforeend",messagesError.numberOnly,"error")
    }
-   if(!verifyIntervalField(monthField, 1,12)){
-      fields.monthField.isGood = false
-      RemoveAndShowMessageWithClassCSS(divDate,"beforeend",messagesError.monthValue,"error")
+   else {
+      if(verifySizeField(monthField,2)===false){
+         fields.monthField.isGood = false
+         RemoveAndShowMessageWithClassCSS(divDate,"beforeend",messagesError.monthSize,"error")
+      }
+      else if(!verifyIntervalField(monthField, 1,12)){
+         fields.monthField.isGood = false
+         RemoveAndShowMessageWithClassCSS(divDate,"beforeend",messagesError.monthValue,"error")
+      }
    }
 
    // Vérification du champ yearField
-   if(verifySizeField(yearField,2)===false){
+   if(verifyFormatField(yearField,/^[0-9]+$/g)===false){
       fields.yearField.isGood = false
-      RemoveAndShowMessageWithClassCSS(divDate,"beforeend",messagesError.yearSize,"error")
+      RemoveAndShowMessageWithClassCSS(divDate,"beforeend",messagesError.numberOnly,"error")
    }
-   if(verifyIntervalField(yearField, currentYearFormatYY,99)==false){
-      fields.yearField = false;
-      RemoveAndShowMessageWithClassCSS(divDate,"beforeend",messagesError.yearValue,"error")
+   else {
+      if(verifySizeField(yearField,2)===false){
+         fields.yearField.isGood = false
+         RemoveAndShowMessageWithClassCSS(divDate,"beforeend",messagesError.yearSize,"error")
+      }
+      else if(verifyIntervalField(yearField, currentYearFormatYY,99)==false){
+         fields.yearField.isGood = false;
+         RemoveAndShowMessageWithClassCSS(divDate,"beforeend",messagesError.yearValue,"error")
+      }
    }
 
    // Vérification si Date est dans le future
@@ -210,9 +240,13 @@ submit.addEventListener("click",(e)=>{
                      </div>`
       section.insertAdjacentHTML("beforeend",divSuccess)
 
+
+      cardNumberField.value = cardNumberField.value.match(/.{1,4}/g)?.join(" ")
+
+
       front = `<p>${cardNumberField.value}</p>
                      <div>
-                     <p class='capitalize'>${cardholderNameField.value}</p>
+                     <p class='uppercase'>${cardholderNameField.value}</p>
                      <p>${monthField.value}/${yearField.value}</p>
                      </div>`
 
