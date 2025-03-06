@@ -1,0 +1,186 @@
+/* Début immport font */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap');
+
+/* Début du CSS Global */
+* {
+   margin: 0;
+   font-weight: 500;
+   font-size: 18px;
+   font-family: var(--font);
+}
+
+/* Début Class Contain */
+.contain-1440 {
+   max-width: 1440px;
+}
+
+/* Début Class Transform */
+
+.uppercase {
+   text-transform: uppercase;
+}
+
+.capitalize {
+   text-transform: capitalize;
+}
+
+
+/* Début CSS Variable */
+:root {
+   --font: 'Space Grotesk';
+   --color0: hsl(0, 0%, 100%);
+   --color1: hsl(279, 6%, 55%);
+   --color2: hsl(278, 68%, 11%);
+   --color_error : hsl(0, 100%, 66%);
+   --radius: 5px;
+}
+
+body {
+   background-image: url(images/bg-main-desktop.png);
+   background-repeat: no-repeat;
+}
+
+/* Début CSS Main */
+section {
+   margin: auto;
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+   gap: 100px;
+   padding: 100px 50px;
+}
+
+/* Début du CSS #card */
+
+#card {
+   display: grid;
+   gap: 20px;
+}
+
+#card p {
+   color: var(--color0);
+}
+
+#cardfront {
+   width: 70%;
+   justify-self: center;
+   background-image: url(images/bg-card-front.png);
+   background-repeat: no-repeat;
+   background-size: contain;
+   height: 257px;
+}
+
+#cardback {
+   width: 70%;
+   justify-self: right;
+   background-image: url(images/bg-card-back.png);
+   background-repeat: no-repeat;
+   background-size: contain;
+   height: 257px;
+}
+
+/* Début du CSS form */
+
+form {
+   margin: auto;
+   display: grid;
+   gap: 20px;
+}
+
+form>div {
+   display: grid;
+   max-width: 80%;
+}
+
+form label {
+   padding-bottom: 5px;
+}
+
+body > main > section > form > div:nth-child(3) {
+   display: flex;
+   align-items: start;
+}
+
+body > main > section > form > div:nth-child(3) label {
+   padding-bottom: 5px;
+}
+
+body > main > section > form > div:nth-child(3) > div:nth-child(1) {
+   display: grid;
+   max-width: 100%;
+}
+
+body > main > section > form > div:nth-child(3) > div:nth-child(1) > div > input {
+   max-width: 35%;
+   margin-right: 5px;
+}
+
+body > main > section > form > div:nth-child(3) > div:nth-child(2) {
+   display: grid;
+}
+
+form>input[type='submit']{
+   max-width: 80%;
+   color: var(--color0);
+   background-color: var(--color2);
+}
+
+form>input[type='submit']:disabled {
+   opacity: 0.5;
+}
+
+form input[type='text']{
+   border : 1px solid var(--color1);
+}
+
+form input {
+   border-radius: var(--radius);
+   height: 33px;
+}
+
+/* Début CSS JS */
+
+.border_error {
+   border: 1px solid var(--color_error)!important;
+}
+
+.error {
+   color: var(--color_error);
+   font-size: small;
+}
+
+#divSuccess {
+   margin: auto;
+   text-align: center;
+}
+
+
+#cardfront > p {
+   margin: 35% 0% 0% 10%
+}
+
+#cardfront > div {
+   display: flex;
+   justify-content: space-between;
+   margin: 5% 5% 0px 5%;
+}
+
+#cardback > p {
+   text-align: right;
+   margin: 24% 11%;;
+}
+
+
+/* Début CSS Footer */
+footer {
+   margin: auto;
+   padding-top: 50px;
+}
+
+.attribution { 
+   font-size: 11px; 
+   text-align: center;
+}
+
+.attribution a { 
+   color: hsl(228, 45%, 44%); 
+}
