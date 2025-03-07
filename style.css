@@ -47,6 +47,8 @@
 
 main {
    margin: auto;
+   min-width: 100%;
+   max-width: 100%;
 }
 
 section {
@@ -278,6 +280,11 @@ footer {
  }
 
  @media (max-width: 375px) {
+
+   html, body {
+      overflow-x: hidden;
+      width: 100%;
+  }
 
    #card {
       background-size: 100%;
