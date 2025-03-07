@@ -285,7 +285,7 @@ footer {
    }
    
    body > main > section {
-      gap: 0px;
+      gap: 30px;
    }
 
    body > main > section > div:nth-child(2) {
