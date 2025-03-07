@@ -1,6 +1,6 @@
 const body = document.querySelector("body");
 const form = document.querySelector("form");
-const section = document.querySelector("body>main>section")
+const divForm = document.querySelector("body > main > section > div:nth-child(2)")
 const cardFront = document.querySelector("#cardfront")
 const cardBack = document.querySelector("#cardback")
 
@@ -41,7 +41,7 @@ const messagesError = {
    yearValue:{name: 'yearValue' , text:`Wrong value, must be between ${currentYearFormatYY} and 99`},
    yearSize:{name: 'yearSize' , text:'Wrong size, 2 expected numbers for year'},
    dateFuture:{name: 'dateFuture' , text:'Must be in the future'},
-   cvcSize:{name: 'cvcSize' , text:'Wrong size, 3 expected numbers for year'},
+   cvcSize:{name: 'cvcSize' , text:'Wrong size, 3 expected numbers'},
 }
 
 function RemoveAllMessage(classCSSMessage){
@@ -223,7 +223,7 @@ function verifyAllField(){
 }
 
 
-function SuccessAddCard(){
+function SuccessAddCard(name,numberCard,month,year,cvc){
    form.remove()
 
    const divSuccess = ` <div id='divSuccess'>
@@ -231,20 +231,21 @@ function SuccessAddCard(){
                      <h2 class='uppercase'>thank you !</h2>
                      <p class='capitalize'>we've added your card details</p>
                   </div>`
-   section.insertAdjacentHTML("beforeend",divSuccess)
+   divForm.insertAdjacentHTML("beforeend",divSuccess)
 
 
-   cardNumberField.value = cardNumberField.value.match(/.{1,4}/g)?.join(" ")
+   numberCard = numberCard.match(/.{1,4}/g)?.join(" ")
+   console.log(numberCard)
 
 
-   const front = `<p>${cardNumberField.value}</p>
+   const front = `<p>${numberCard}</p>
                   <div>
-                  <p class='uppercase'>${cardholderNameField.value}</p>
-                  <p>${monthField.value}/${yearField.value}</p>
+                  <p class='uppercase'>${name}</p>
+                  <p>${month}/${year}</p>
                   </div>`
 
 
-   const back = `<p>${cvcField.value}</p>` 
+   const back = `<p>${cvc}</p>` 
 
    cardFront.insertAdjacentHTML("beforeend",front)
    cardBack.insertAdjacentHTML("beforeend",back)
@@ -278,7 +279,7 @@ function showFalseLoading(duration){
          else {
             i = i
          }
-         loading.textContent = `Loading in progress... ${i}%`
+         loading.innerHTML = `Loading... <span>${i}</span>%`
          if(i==100){
             clearInterval(interval)
             body.classList.remove("opacity")
@@ -307,8 +308,10 @@ submit.addEventListener("click", async (e)=>{
    await showFalseLoading(1)
 
    if(verifyAllField()){
-      SuccessAddCard()
+      SuccessAddCard(cardholderNameField.value,cardNumberField.value,monthField.value,yearField.value,cvcField.value)
    }
 
-})
+   // SuccessAddCard('Sebastien LUCAS','1234123412341234','10','27','530')
 
+})
+      
