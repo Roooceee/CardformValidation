@@ -24,6 +24,12 @@
    text-transform: capitalize;
 }
 
+/* Début Class */
+
+.opacity {
+   background-color: rgba(211, 211, 211, 1);
+   opacity: 0.33;
+}
 
 /* Début CSS Variable */
 :root {
@@ -33,15 +39,13 @@
    --color2: hsl(278, 68%, 11%);
    --color_error : hsl(0, 100%, 66%);
    --radius: 5px;
-}
-
-body {
-   background-image: url(images/bg-main-desktop.png);
-   background-repeat: no-repeat;
+   --radius1:33px
 }
 
 /* Début CSS Main */
 section {
+   background-image: url(images/bg-main-desktop.png);
+   background-repeat: no-repeat;
    margin: auto;
    display: grid;
    grid-template-columns: 1fr 1fr;
@@ -167,6 +171,13 @@ form input {
 #cardback > p {
    text-align: right;
    margin: 24% 11%;;
+}
+
+#loadingModal {
+   width: 15%;
+   text-align: center;
+   margin: auto;
+   border-radius: var(--radius1);
 }
 
 
