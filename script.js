@@ -291,13 +291,13 @@ function showFalseLoading(duration){
    })
 }
 
-Object.values(fields).forEach((field)=>{
-   field.element.addEventListener("input" , (e) => {
-      verifyAllFieldNoEmpty()
-   })
-})
+// Object.values(fields).forEach((field)=>{
+//    field.element.addEventListener("input" , (e) => {
+//       verifyAllFieldNoEmpty()
+//    })
+// })
 
-// submit.disabled = false;
+submit.disabled = false;
 
 submit.addEventListener("click", async (e)=>{
    
@@ -305,13 +305,13 @@ submit.addEventListener("click", async (e)=>{
    
    init()
 
-   await showFalseLoading(1)
+   // await showFalseLoading(1)
 
-   if(verifyAllField()){
-      SuccessAddCard(cardholderNameField.value,cardNumberField.value,monthField.value,yearField.value,cvcField.value)
-   }
+   // if(verifyAllField()){
+   //    SuccessAddCard(cardholderNameField.value,cardNumberField.value,monthField.value,yearField.value,cvcField.value)
+   // }
 
-   // SuccessAddCard('Sebastien LUCAS','1234123412341234','10','27','530')
+   SuccessAddCard('Sebastien LUCAS','1234123412341234','10','27','530')
 
 })
-      
+
