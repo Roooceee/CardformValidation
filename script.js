@@ -227,10 +227,10 @@ function SuccessAddCard(name,numberCard,month,year,cvc){
    form.remove()
 
    const divSuccess = ` <div id='divSuccess'>
-                     <img src="images/icon-complete.svg" alt="Success">
-                     <h2 class='uppercase'>thank you !</h2>
-                     <p class='capitalize'>we've added your card details</p>
-                  </div>`
+                           <img src="images/icon-complete.svg" alt="Success">
+                           <h2 class='uppercase'>thank you !</h2>
+                           <p class='capitalize'>we've added your card details</p>
+                        </div>`
    divForm.insertAdjacentHTML("beforeend",divSuccess)
 
 
@@ -291,11 +291,11 @@ function showFalseLoading(duration){
    })
 }
 
-// Object.values(fields).forEach((field)=>{
-//    field.element.addEventListener("input" , (e) => {
-//       verifyAllFieldNoEmpty()
-//    })
-// })
+Object.values(fields).forEach((field)=>{
+   field.element.addEventListener("input" , (e) => {
+      verifyAllFieldNoEmpty()
+   })
+})
 
 submit.disabled = false;
 
@@ -305,13 +305,10 @@ submit.addEventListener("click", async (e)=>{
    
    init()
 
-   // await showFalseLoading(1)
+   await showFalseLoading(1)
 
-   // if(verifyAllField()){
-   //    SuccessAddCard(cardholderNameField.value,cardNumberField.value,monthField.value,yearField.value,cvcField.value)
-   // }
-
-   SuccessAddCard('Sebastien LUCAS','1234123412341234','10','27','530')
-
+   if(verifyAllField()){
+      SuccessAddCard(cardholderNameField.value,cardNumberField.value,monthField.value,yearField.value,cvcField.value)
+   }
 })
 
