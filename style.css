@@ -219,6 +219,8 @@ div > form input {
 
 /* Début CSS Footer */
 footer {
+   max-width: 1920px;
+   margin: auto;
    display: flex;
    justify-content: center;
    flex-wrap: wrap;
