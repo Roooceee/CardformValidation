@@ -9,6 +9,10 @@
    font-family: var(--font);
 }
 
+img {
+   max-width: 100%;
+}
+
 /* Début Class Contain */
 .contain-1440 {
    max-width: 1440px;
@@ -46,19 +50,21 @@
 /* Début CSS Main */
 
 main {
-   margin: auto;
-   min-width: 100%;
-   max-width: 100%;
+   display: grid;
+   min-height: 100dvh;
+   background-image: url(images/bg-main-desktop.png);
+   background-repeat: no-repeat;
+   background-size: contain;
 }
 
 section {
-   background-image: url(images/bg-main-desktop.png);
-   background-repeat: no-repeat;
    margin: auto;
-   display: grid;
-   grid-template-columns: 1fr 1fr;
+   display: flex;
+   justify-content: center;
+   justify-self: center;
+   align-items: center;
    gap: 100px;
-   padding: 100px 50px;
+   padding: 50px;
 }
 
 /* Début du CSS #card */
@@ -66,7 +72,7 @@ section {
 #card {
    display: grid;
    gap: 20px;
-   
+   width: 550px;
 }
 
 #card p {
@@ -74,37 +80,22 @@ section {
 }
 
 #cardfront {
-   min-width: 370px;
-   width: 70%;
-   justify-self: center;
-   background-image: url(images/bg-card-front.png);
-   background-repeat: no-repeat;
-   background-size: contain;
-   height: 257px;
+   position: relative;
+   justify-self: left;
 }
 
 #cardback {
-   min-width: 370px;
-   width: 70%;
+   position: relative;
    justify-self: right;
-   background-image: url(images/bg-card-back.png);
-   background-repeat: no-repeat;
-   background-size: contain;
-   height: 257px;
 }
 
 /* Début du CSS form */
 
-body > main > section > div:nth-child(2) {
-   margin: auto 0;
-   max-width: 80%;
-}
-
 form {
+   max-width: 90%;
    display: grid;
    gap: 20px;
 }
-
 
 form input {
    max-width: 300px;
@@ -124,7 +115,7 @@ form label {
 
 body > main > section > div > form > div:nth-child(3) {
    display: flex;
-   flex-wrap: wrap;
+   flex-wrap: nowrap;
    align-items: start;
    gap: 5px;
 }
@@ -134,8 +125,10 @@ body > main > section > div > form > div:nth-child(3) label {
 }
 
 body > main > section > div > form > div:nth-child(3) > div:nth-child(1) {
-   display: grid;
+   display: flex;
+   flex-direction: column;
 }
+
 
 body > main > section > div > form > div:nth-child(3) > div:nth-child(1) > div > input {
    max-width: 35%;
@@ -143,7 +136,8 @@ body > main > section > div > form > div:nth-child(3) > div:nth-child(1) > div >
 }
 
 body > main > section > div > form > div:nth-child(3) > div:nth-child(2) {
-   display: grid;
+   display: flex;
+   flex-direction: column;
 }
 
 div > form>input[type='submit']{
@@ -176,28 +170,43 @@ div > form input {
 }
 
 #divSuccess {
+   width: 500px;
    margin: auto;
    text-align: center;
 }
 
-
-#cardfront > p {
-   margin: 35% 0% 0% 10%
+.numberCard {
+   white-space: nowrap;
+   letter-spacing: 7px;
+   font-size: x-large;
+   position: absolute;
+   top: 55%;
+   left: 10%;
 }
 
-#cardfront > div {
-   display: flex;
-   justify-content: space-between;
-   margin: 5% 5% 0px 5%;
+.name {
+   font-size: large;
+   position: absolute;
+   bottom: 10%;
+   left: 10%;
 }
 
-#cardback > p {
-   text-align: right;
-   margin: 24% 11%;;
+.dateCard {
+   font-size: large;
+   position: absolute;
+   bottom: 10%;
+   right: 5%;
+}
+
+.cvc {
+   font-size: large;
+   position: absolute;
+   top: 45%;
+   right: 12%;
 }
 
 #loadingModal {
-   width: 15%;
+   width: fit-content;
    text-align: center;
    margin: auto;
    border-radius: var(--radius1);
@@ -210,8 +219,11 @@ div > form input {
 
 /* Début CSS Footer */
 footer {
-   margin: auto;
-   padding-top: 50px;
+   display: flex;
+   justify-content: center;
+   flex-wrap: wrap;
+   gap: 10px;
+   padding: 20px;
 }
 
 .attribution { 
@@ -225,92 +237,101 @@ footer {
 
 /* Début CSS Tablet */
 
-@media screen and (max-width:1024px) {
+@media screen and (max-width:1025px) {
 
-   body > main > section {
-      padding: 50px;
+   body > main {
+      background: url(images/bg-main-mobile.png);
+      background-repeat: no-repeat;
+      background-size: 100% 40%;
    }
 
    body > main > section {
       background-image: none;
-      grid-template-columns: 1fr;
-      padding: 0;
+      flex-direction: column;
+      padding: 50px 0px 0px 0px;
+      gap: 200px;
    }
+
+   #divSuccess {
+      width: 100%;
+   }
+
    #card {
-      min-height: 350px;
-      max-height: 400px;
+      width: 90%;
       position: relative;
-      background-image: url(images/bg-main-mobile.png);
-      background-repeat: no-repeat;
-      background-size: cover;
-      grid-template-columns: 1fr;
    }
 
    #cardback {
-      min-width: 280px;
-      max-width: 448px ;
-      margin-top: 50px;
-      position: absolute;
-      z-index: 1  ;
-      justify-self: right;
+      max-width: 80%;
+      right: 0%;
    }
 
    #cardfront {
-      min-width: 280px;
-      max-width: 448px ;
-      margin-top: 205px;
-      z-index: 2;
-      justify-self: left;
+      max-width: 80%;
+      position: absolute;
+      top: 55%;
+      z-index: 1;
    }
 
-   body > main > section > div:nth-child(2) {
-      margin: auto;
-      padding: 50px;
-   }
-
-   * {
-      font-size: small;
-   }
-
- }
-
- @media (max-width: 375px) {
-
-   html, body {
-      overflow-x: hidden;
-      width: 100%;
-  }
-
-   #card {
-      background-size: 100%;
-      min-height: 220px;
+   .numberCard {
+      font-size: large;
+      letter-spacing: 4px;
    }
    
-   body > main > section {
-      gap: 30px;
+   .name , .dateCard , .cvc {
+      font-size: medium;
    }
 
-   body > main > section > div:nth-child(2) {
-      padding: 10px;
+   form {
+      max-width: 80%;
+      margin: auto;
    }
 
-   #cardback {
-      margin-top: 20px;
-      min-width: 80vw;
-      left: 20%;
-      right: 10%;
-      height: 20vh;
-  }
+   form input {
+      max-width: 100%;
+   }
 
-  #cardfront {
-   margin-top: 95px;
-   min-width: 80vw;
-   left: 10%;
-   right: 20%;
-   height: 20vh;
+   footer {
+      padding: 50px 0px 20px 0px;
+   }
 }
-  }
 
-  * {
-   font-size: x-small;
-  }
+
+@media (max-width:767px){
+
+   body > main {
+      background-size: 100% 35%;
+   }
+
+   body > main > section {
+      gap: 140px
+   }
+
+   .numberCard {
+      font-size: medium;
+      letter-spacing: 3px;
+   }
+   
+   .name , .dateCard , .cvc {
+      font-size: xx-small;
+   }
+
+   form {
+      max-width: 80%;
+      margin: auto;
+   }
+
+   form div {
+      max-width: 100%;
+   }
+
+   form input {
+      max-width: 100%;
+   }
+
+   body > main > section > div:nth-child(2) > form > div:nth-child(3) {
+      flex-wrap: wrap;
+   }
+
+
+}

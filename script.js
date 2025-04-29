@@ -238,14 +238,14 @@ function SuccessAddCard(name,numberCard,month,year,cvc){
    console.log(numberCard)
 
 
-   const front = `<p>${numberCard}</p>
+   const front = `<p class='numberCard'>${numberCard}</p>
                   <div>
-                  <p class='uppercase'>${name}</p>
-                  <p>${month}/${year}</p>
+                  <p class='uppercase name'>${name}</p>
+                  <p class='dateCard'>${month}/${year}</p>
                   </div>`
 
 
-   const back = `<p>${cvc}</p>` 
+   const back = `<p class='cvc'>${cvc}</p>` 
 
    cardFront.insertAdjacentHTML("beforeend",front)
    cardBack.insertAdjacentHTML("beforeend",back)
@@ -296,8 +296,6 @@ Object.values(fields).forEach((field)=>{
       verifyAllFieldNoEmpty()
    })
 })
-
-submit.disabled = false;
 
 submit.addEventListener("click", async (e)=>{
    
