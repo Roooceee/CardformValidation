@@ -120,6 +120,7 @@ body > main > section > div > form > div:nth-child(3) {
    gap: 5px;
 }
 
+
 body > main > section > div > form > div:nth-child(3) label {
    padding-bottom: 5px;
 }
@@ -129,6 +130,9 @@ body > main > section > div > form > div:nth-child(3) > div:nth-child(1) {
    flex-direction: column;
 }
 
+#divDate > div {
+   align-items: baseline;
+}
 
 body > main > section > div > form > div:nth-child(3) > div:nth-child(1) > div > input {
    max-width: 35%;

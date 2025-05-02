@@ -206,21 +206,23 @@ function verifyCardNumberField(){
 // Vérifie les champs month et year
 function verifyDate(){
 
-   const errorDate = document.querySelector('.divDate_error')
+   const errorDate = document.querySelectorAll('.divDate_error')
+   
    if(errorDate){
-      errorDate.remove()
+      errorDate.forEach((e)=>{
+         console.log(e)
+         e.remove()
+      })
    }
 
    // Vérification du champ monthField
-   if(verifyFieldIsEmpty(monthField,divDate)){
+   if(verifyFieldIsEmpty(monthField,divDate) || (verifyFieldIsEmpty(yearField,divDate) && fieldYearisBlur)){
       fields.monthField.isGood = false
-      showMessageWithClassCSS(divDate,divDate.id,"beforeend",messagesError.fieldsAreEmpty,"error")
-   }
-   else if(verifyFieldIsEmpty(yearField,divDate) && fieldYearisBlur) {
       fields.yearField.isGood = false
       showMessageWithClassCSS(divDate,divDate.id,"beforeend",messagesError.fieldsAreEmpty,"error")
    }
    else {
+
       verifyMonthField()
       verifyYearField()
       
@@ -233,10 +235,12 @@ function verifyDate(){
          }
       }
    }
+   
 }
 
 // Vérifie le champ month
 function verifyMonthField(){
+
    fields.monthField.isGood = true
 
    if(!verifyFormatField(monthField,/^[0-9]+$/g)){
@@ -257,11 +261,6 @@ function verifyMonthField(){
 
 // Vérifie le champ year
 function verifyYearField(){
-   
-   const errorDate = document.querySelector('.divDate_error')
-   if(errorDate){
-      errorDate.remove()
-   }
 
    fields.yearField.isGood = true
 
