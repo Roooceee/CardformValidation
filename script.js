@@ -404,7 +404,6 @@ Object.values(fields).forEach((field)=>{
    })
 })
 
-submit.disabled=false
 
 // Ajoute un event blur a tout les champs
 Object.values(fields).forEach((field)=>{
